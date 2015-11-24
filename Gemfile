@@ -60,4 +60,10 @@ group :development do
 
   # for probrem of n+1
   gem 'bullet'
+
+  # capistrano
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
 end
