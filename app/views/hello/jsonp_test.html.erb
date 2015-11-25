@@ -1,14 +1,43 @@
 <h1>Jsonp Test</h1>
+
+<input id="ajax-url" type="text" placeholder="ajaxしたいURLを入れてね">
+<button id="go-ajax">jsonpを受け取る</button>
+<div id="eg-url">
+  e.g. <input type="text" value="http://210.140.71.3:8080/hello?callback=hoge">
+</div>
+
 <script type="text/javascript">
 $( function(){
-  $.ajax( {
-    type: "GET",
-    url: "http://210.140.71.3:8080/hello?callback=hoge",
-    dataType: "jsonp",
-    jsonpCallback: "hoge",
-    success: function( jsonp ){
-      console.log( jsonp );
-    }
+  $( "#go-ajax" ).on( "click", function(){
+    $.ajax( {
+      type: "GET",
+      url: $( "#ajax-url" ).val(),
+      dataType: "jsonp",
+      jsonpCallback: "hoge",
+      success: function( jsonp ){
+        console.log( jsonp );
+        $( "#eg-url" ).after(
+          $( "<div></div>" )
+            .text( "jsonp.sample.message => " + jsonp.sample.message )
+        );
+      },
+      error: function( err ){
+        console.log( err );
+        $( "#eg-url" ).after(
+          $( "<div></div>" )
+            .text( "失敗しました" )
+        );
+      }
+    } );
   } );
 } );
 </script>
+<style>
+  input{
+    width: 300px;
+  }
+
+  #eg-url{
+    margin: 20px;
+  }
+</style>
