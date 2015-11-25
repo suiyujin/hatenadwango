@@ -4,4 +4,8 @@ class HelloController < ApplicationController
   def index
     render json: { sample: { message: 'Hello!' } }, callback: callback_param
   end
+
+  def jsonp_test
+    render :jsonp_test
+  end
 end
