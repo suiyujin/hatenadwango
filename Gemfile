@@ -69,3 +69,4 @@ group :development do
 end
 
 gem 'cabocha'
+gem 'moji'
