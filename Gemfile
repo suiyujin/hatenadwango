@@ -70,3 +70,5 @@ end
 
 gem 'cabocha'
 gem 'moji'
+
+gem 'addressable'
