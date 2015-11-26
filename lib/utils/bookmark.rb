@@ -6,6 +6,13 @@ class Utils::Bookmark
     @comment = comment
     @user = user
     @tags = tags
+
+    parser = CaboCha::Parser.new
+    @tree = parser.parse(comment)
+  end
+
+  def make_base_array
+    @tree.chunks.map(&:tokens).flatten.map(&:to_base)
   end
 
   private
