@@ -72,3 +72,7 @@ gem 'cabocha'
 gem 'moji'
 
 gem 'addressable'
+
+# redis
+gem 'redis'
+gem 'hiredis'
