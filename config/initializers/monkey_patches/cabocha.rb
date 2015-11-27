@@ -4,24 +4,68 @@ module CaboCha
     def noun?
       feature_list(0) == '名詞'
     end
-    # 名詞接続? (「お星様」の「お」など)
-    def meishi_setsuzoku?
-      feature_list(0) == '接頭詞' &&
-        feature_list(1) == '名詞接続'
-    end
-    # 動詞？
-    def verb?
-      feature_list(0) == '動詞'
-    end
-    # 形容詞？
-    def adjective?
-      feature_list(0) == '形容詞'
-    end
     # 名詞サ変接続？
     def sahen_setsuzoku?
       feature_list(0) == '名詞' &&
         feature_list(1) == 'サ変接続'
     end
+    # 名詞形容動詞語幹？
+    def keiyoudoushi_gokan?
+      feature_list(0) == '名詞' &&
+        feature_list(1) == '形容動詞語幹'
+    end
+    # 名詞接尾形容動詞語幹？
+    def setsubi_keiyoudoushi_gokan?
+      feature_list(0) == '名詞' &&
+        feature_list(1) == '接尾' &&
+          feature_list(2) == '形容動詞語幹'
+    end
+    # 名詞ナイ形容詞語幹？
+    def nai_keiyoushi_gokan?
+      feature_list(0) == '名詞' &&
+        feature_list(1) == 'ナイ形容詞語幹'
+    end
+
+    # 接続詞？
+    def conjunction?
+      feature_list(0) == '接続詞'
+    end
+    # 名詞接続？ (「お星様」の「お」など)
+    def meishi_setsuzoku?
+      feature_list(0) == '接頭詞' &&
+        feature_list(1) == '名詞接続'
+    end
+
+    # 動詞？
+    def verb?
+      feature_list(0) == '動詞'
+    end
+    # 動詞自立？
+    def verb_jiritsu?
+      feature_list(0) == '動詞' &&
+        feature_list(1) == '自立'
+    end
+
+    # 形容詞？
+    def adjective?
+      feature_list(0) == '形容詞'
+    end
+    # 形容詞自立？
+    def adjective_jiritsu?
+      feature_list(0) == '形容詞' &&
+        feature_list(1) == '自立'
+    end
+    # 形容詞非自立？
+    def adjective_hijiritsu?
+      feature_list(0) == '形容詞' &&
+        feature_list(1) == '非自立'
+    end
+
+    # 助動詞？
+    def auxiliary_verb?
+      feature_list(0) == '助動詞'
+    end
+
     # サ変する？
     def sahen_suru?
       feature_list(4) == 'サ変・スル'
