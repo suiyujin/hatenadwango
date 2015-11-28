@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post 'negaposi' => 'negaposi#examine'
+
   get 'hello' => 'hello#index'
   get 'jsonp_test' => 'hello#jsonp_test'
 

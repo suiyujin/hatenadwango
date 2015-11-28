@@ -1,5 +1,6 @@
 class Utils::Bookmark
-  attr_reader :timestamp, :comment, :user, :tags, :normalize_comment
+  attr_reader :timestamp, :comment, :user, :tags, :normalize_comment, :tree
+  attr_accessor :nega_words, :posi_words
 
   def initialize(timestamp: '', comment: '', user: '', tags: [])
     @timestamp = timestamp
@@ -7,13 +8,27 @@ class Utils::Bookmark
     @user = user
     @tags = tags
 
-    @normalize_comment = normalize_comment
-    parser = CaboCha::Parser.new
-    @tree = parser.parse(@normalize_comment)
+    @nega_words = []
+    @posi_words = []
+
+    @tree = nil
+
+    if comment.blank?
+      @normalize_comment = ''
+    else
+      @normalize_comment = normalize_comment
+    end
+  end
+
+  def parse
+    unless comment.blank?
+      parser = CaboCha::Parser.new
+      @tree = parser.parse(@normalize_comment)
+    end
   end
 
   def make_base_array
-    @tree.chunks.map(&:tokens).flatten.map(&:to_base)
+    @tree.nil? ? nil : @tree.chunks.map(&:tokens).flatten.map(&:to_base)
   end
 
   private
