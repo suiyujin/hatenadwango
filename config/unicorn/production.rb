@@ -1,5 +1,5 @@
 worker_processes 10
-timeout 15
+timeout 60
 preload_app true
 
 listen "/var/www/hatenadwango/shared/tmp/sockets/unicorn.sock"
