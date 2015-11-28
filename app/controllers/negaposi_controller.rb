@@ -87,10 +87,4 @@ class NegaposiController < ApplicationController
 
     render json: response, callback: callback_param
   end
-
-  private
-
-  def negaposi_params
-    params.permit(:urls)
-  end
 end
