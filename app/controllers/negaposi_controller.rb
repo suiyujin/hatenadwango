@@ -56,13 +56,6 @@ class NegaposiController < ApplicationController
 
       nega_comments_num = bookmarks_exist_nega_words.size
       posi_comments_num = bookmarks_exist_posi_words.size
-      # とりあえず決め打ちの値
-      #nega_comments_num = bookmarks_exist_comment.inject(0) do |sum, bookmark|
-      #  sum + bookmark.nega_words.size
-      #end
-      #posi_comments_num = bookmarks_exist_comment.inject(0) do |sum, bookmark|
-      #  sum + bookmark.posi_words.size
-      #end
 
       nega_words = bookmarks_exist_nega_words.map(&:nega_words).flatten
       posi_words = bookmarks_exist_posi_words.map(&:posi_words).flatten
