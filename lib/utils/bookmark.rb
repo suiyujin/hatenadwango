@@ -7,13 +7,18 @@ class Utils::Bookmark
     @user = user
     @tags = tags
 
-    @normalize_comment = normalize_comment
-    parser = CaboCha::Parser.new
-    @tree = parser.parse(@normalize_comment)
+    if comment.blank?
+      @normalize_comment = ''
+      @tree = nil
+    else
+      @normalize_comment = normalize_comment
+      parser = CaboCha::Parser.new
+      @tree = parser.parse(@normalize_comment)
+    end
   end
 
   def make_base_array
-    @tree.chunks.map(&:tokens).flatten.map(&:to_base)
+    @tree.nil? ? nil : @tree.chunks.map(&:tokens).flatten.map(&:to_base)
   end
 
   private
