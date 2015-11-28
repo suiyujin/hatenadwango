@@ -15,11 +15,11 @@ class NegaposiController < ApplicationController
     comments_num = res_hatena['count'] / 2
     nega_comments_num = res_hatena['count'] / 4
     posi_comments_num = res_hatena['count'] / 4
-    nega_posi_words_num = 5
-    nega_words_num = 3
-    posi_words_num = 2
     nega_words = ['あきらめる', 'いたたまれない', 'しょんぼり']
-    posi_words = ['勝つ', '自信がある', '惚れる']
+    posi_words = ['勝つ', '自信がある']
+    nega_words_num = nega_words.size
+    posi_words_num = posi_words.size
+    nega_posi_words_num = nega_words_num + posi_words_num
 
     response = {
       pages: {
