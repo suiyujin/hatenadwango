@@ -2,27 +2,29 @@ class NegaposiController < ApplicationController
   def examine
     urls = params[:urls]
 
-    # はてブAPI
-    res_hatena = HatenaBookmarkApi.request(urls[0])
+    response = { pages: [] }
 
-    # コメント正規化する
+    urls.each do |url|
+      # はてブAPI
+      res_hatena = HatenaBookmarkApi.request(url)
 
-    # ネガポジ判定
+      # コメント正規化する
 
-    # レスポンス作る
+      # ネガポジ判定
 
-    # とりあえず決め打ちの値
-    comments_num = res_hatena['count'] / 2
-    nega_comments_num = res_hatena['count'] / 4
-    posi_comments_num = res_hatena['count'] / 4
-    nega_words = ['あきらめる', 'いたたまれない', 'しょんぼり']
-    posi_words = ['勝つ', '自信がある']
-    nega_words_num = nega_words.size
-    posi_words_num = posi_words.size
-    nega_posi_words_num = nega_words_num + posi_words_num
+      # レスポンス作る
 
-    response = {
-      pages: {
+      # とりあえず決め打ちの値
+      comments_num = res_hatena['count'] / 2
+      nega_comments_num = res_hatena['count'] / 4
+      posi_comments_num = res_hatena['count'] / 4
+      nega_words = ['あきらめる', 'いたたまれない', 'しょんぼり']
+      posi_words = ['勝つ', '自信がある']
+      nega_words_num = nega_words.size
+      posi_words_num = posi_words.size
+      nega_posi_words_num = nega_words_num + posi_words_num
+
+      response[:pages] << {
         entry_id: res_hatena['eid'].to_s,
         url: res_hatena['url'],
         bookmarks_num: res_hatena['count'],
@@ -41,7 +43,7 @@ class NegaposiController < ApplicationController
           posi_rate: posi_words_num.to_f / nega_posi_words_num.to_f
         }
       }
-    }
+    end
 
     render json: response, callback: callback_param
   end
