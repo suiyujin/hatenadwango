@@ -18,14 +18,18 @@ class NegaposiController < ApplicationController
                            )
       end
 
+      # コメントのあるブックマーク一覧
+      bookmarks_exist_comment = page.bookmarks.select { |bookmark| bookmark.comment.present? }
+
       # ネガポジ判定
 
       # レスポンス作る
+      comments_num = bookmarks_exist_comment.size
 
       # とりあえず決め打ちの値
-      comments_num = res_hatena['count'] / 2
-      nega_comments_num = res_hatena['count'] / 4
-      posi_comments_num = res_hatena['count'] / 4
+      nega_comments_num = comments_num / 2 - 5
+      posi_comments_num = comments_num / 2 + 5
+
       nega_words = ['あきらめる', 'いたたまれない', 'しょんぼり']
       posi_words = ['勝つ', '自信がある']
       nega_words_num = nega_words.size
