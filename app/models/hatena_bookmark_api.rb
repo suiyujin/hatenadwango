@@ -5,7 +5,7 @@ class HatenaBookmarkApi < WebApi
       path: '/entry/jsonlite/',
       params:
       {
-        url: 'http://jkmorning.com/lp/'
+        url: url
       }
     )
   end
