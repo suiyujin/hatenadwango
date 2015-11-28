@@ -5,7 +5,12 @@ class Dictionary
     @redis = Redis.new(load_config_file['hiredis'])
   end
 
-  def search
+  def search(query)
+    @redis.keys(query)
+  end
+
+  def get(query)
+    @redis.get(query)
   end
 
   private
