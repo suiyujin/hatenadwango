@@ -41,3 +41,6 @@ bower.json
 *.swo
 *~
 .DS_Store
+
+# dump file
+dump.rdb
