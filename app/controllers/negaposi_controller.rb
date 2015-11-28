@@ -8,7 +8,15 @@ class NegaposiController < ApplicationController
       # はてブAPI
       res_hatena = HatenaBookmarkApi.request(url)
 
-      # コメント正規化する
+      page = Utils::Page.new(url: res_hatena['url'])
+      page.bookmarks = res_hatena['bookmarks'].map do |bookmark|
+        bookmark = Utils::Bookmark.new(
+          timestamp: bookmark['timestamp'],
+          comment: bookmark['comment'],
+          user: bookmark['user'],
+          tags: bookmark['tags']
+                           )
+      end
 
       # ネガポジ判定
 
