@@ -1,5 +1,5 @@
-worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
-timeout 15
+worker_processes 10
+timeout 60
 preload_app true
 
 listen "/var/www/hatenadwango/shared/tmp/sockets/unicorn.sock"
